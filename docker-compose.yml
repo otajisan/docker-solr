@@ -1,0 +1,18 @@
+# @see https://github.com/docker-solr/docker-solr
+version: '3'
+services:
+  solr:
+    restart: always
+    image: solr:7
+    container_name: 'solr7'
+    ports:
+     - "8007:8983"
+    volumes:
+      - solr7-data:/opt/solr/server/solr/sandbox
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - sandbox
+volumes:
+  solr7-data:
+    driver: local
